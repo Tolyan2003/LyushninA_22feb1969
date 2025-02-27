@@ -1,0 +1,2573 @@
+{
+	"info": {
+		"_postman_id": "08d356b8-8535-46e3-a2ba-09cdaf6965c5",
+		"name": "Сибирские дары",
+		"description": "Коллекция запросов для тестирования корзины сайта sibdar-spb.ru\n\nID сессии, ID пользователя и ID корзины выдаются в куках на сессию\n\nКаждый товар имеет свой код - idProd. В запросах применяется \"idProd\":\"204\", соответствующий товару \"Грузди соленые, целые и резаные\"\n\nПроверялись дополнтельно IDprod:\n\n- \"idProd\":\"178\" - \"Грузди соленые резаные\"\n    \n- \"idProd\":\"498\" - \"Икра из опят\"",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36932318",
+		"_collection_link": "https://tolyan2003.postman.co/workspace/8e8874c3-849d-47e8-b511-db3c17dae3e7/collection/36932318-08d356b8-8535-46e3-a2ba-09cdaf6965c5?action=share&source=collection_link&creator=36932318"
+	},
+	"item": [
+		{
+			"name": "Просмотр корзины",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код состояния ответа - 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Время отклика составляет менее 200 мс\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Заголовок типа содержимого - 'text/html'\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('text/html');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Текст ответа содержит ожидаемую HTML-структуру\", function () {\r",
+							"    const expectedHtml = \"<h2>Корзина пуста, необходимо это исправить</h2>\";\r",
+							"    pm.expect(pm.response.text()).to.include(expectedHtml);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Текст ответа содержит ожидаемое сообщение\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Корзина пуста, необходимо это исправить\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"content-length": true,
+					"host": true,
+					"connection": true,
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": " application/json, text/javascript, */*; q=0.01",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " ru,en;q=0.9",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": " application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+						"type": "text"
+					},
+					{
+						"key": "Priority",
+						"value": " u=1, i",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua",
+						"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": " XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\"idCookie\":711346,\"idProd\":204,\"type\":\"delete\"}",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}{{list}}",
+					"host": [
+						"{{base_url}}{{list}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Просмотр корзины",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"178\",\"type\":\"delete\"}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{list}}",
+							"host": [
+								"{{base_url}}{{list}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:15:46 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "88"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": "\n<h2>Корзина пуста, необходимо это исправить</h2>"
+				},
+				{
+					"name": "Просмотр корзины - добавление",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"178\",\"type\":\"delete\"}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{list}}",
+							"host": [
+								"{{base_url}}{{list}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:22:09 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "\n\n\n\n<div class=\"order_item\" id=\"or_204\" data-idpr=\"204\">\n    <div class=\"order_name_block\">\n        <img src=\"/upload/resize_cache/custom/150x150_1/upload/iblock/fc6/4ioug67urkujc2gcz30j1igjdakvic0b.jpeg\">\n        <div class=\"name_order\">\n            <span class=\"name_product_item\" id=\"name_product_item_204\">Грузди соленые</span>\n            <span id=\"price_product_item_204\">1920 руб</span>\n        </div>\n    </div>\n    <div class=\"order_price_block\">\n        <div class=\"count_product\" >\n            <div class=\"text_small_ord\">Количество:</div>\n            <div class=\"order_count_block\">\n                <span class=\"minus_prod\" onclick=\" minusCountOrder(this, 204) \">-</span>\n                <input type=\"text\" name=\"colprod\" id=\"count_product_item_204\" value=\"1 шт\" class=\"rasOb\" disabled=\"\" max=\"999999\">\n                <span class=\"plus_prod\" onclick=\" plusCountOrder(this, 204) \">+</span>\n            </div>\n        </div>\n        <div class=\"price_container\">\n            <div class=\"text_small_ord\">Сумма:</div>\n            <div class=\"price_tot\" id=\"total_price_product_item\">\n                <span class=\"price_ti\" id=\"price_ti_204\">1920</span> руб\n            </div>\n        </div>\n        <button class=\"delet_pr_bas\" onclick=\"deleteCardItem(this, 204)\">\n            <img src=\"/local/templates/sibdar_cust/img/close.png\" alt=\"\">\n        </button>\n    </div>\n</div>"
+				},
+				{
+					"name": "Просмотр корзины +1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"178\",\"type\":\"delete\"}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{list}}",
+							"host": [
+								"{{base_url}}{{list}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:27:09 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "\n\n\n\n<div class=\"order_item\" id=\"or_204\" data-idpr=\"204\">\n    <div class=\"order_name_block\">\n        <img src=\"/upload/resize_cache/custom/150x150_1/upload/iblock/fc6/4ioug67urkujc2gcz30j1igjdakvic0b.jpeg\">\n        <div class=\"name_order\">\n            <span class=\"name_product_item\" id=\"name_product_item_204\">Грузди соленые</span>\n            <span id=\"price_product_item_204\">1920 руб</span>\n        </div>\n    </div>\n    <div class=\"order_price_block\">\n        <div class=\"count_product\" >\n            <div class=\"text_small_ord\">Количество:</div>\n            <div class=\"order_count_block\">\n                <span class=\"minus_prod\" onclick=\" minusCountOrder(this, 204) \">-</span>\n                <input type=\"text\" name=\"colprod\" id=\"count_product_item_204\" value=\"2 шт\" class=\"rasOb\" disabled=\"\" max=\"999999\">\n                <span class=\"plus_prod\" onclick=\" plusCountOrder(this, 204) \">+</span>\n            </div>\n        </div>\n        <div class=\"price_container\">\n            <div class=\"text_small_ord\">Сумма:</div>\n            <div class=\"price_tot\" id=\"total_price_product_item\">\n                <span class=\"price_ti\" id=\"price_ti_204\">3840</span> руб\n            </div>\n        </div>\n        <button class=\"delet_pr_bas\" onclick=\"deleteCardItem(this, 204)\">\n            <img src=\"/local/templates/sibdar_cust/img/close.png\" alt=\"\">\n        </button>\n    </div>\n</div>"
+				},
+				{
+					"name": "Просмотр корзины -1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"178\",\"type\":\"delete\"}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{list}}",
+							"host": [
+								"{{base_url}}{{list}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:32:23 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "\n\n\n\n<div class=\"order_item\" id=\"or_204\" data-idpr=\"204\">\n    <div class=\"order_name_block\">\n        <img src=\"/upload/resize_cache/custom/150x150_1/upload/iblock/fc6/4ioug67urkujc2gcz30j1igjdakvic0b.jpeg\">\n        <div class=\"name_order\">\n            <span class=\"name_product_item\" id=\"name_product_item_204\">Грузди соленые</span>\n            <span id=\"price_product_item_204\">1920 руб</span>\n        </div>\n    </div>\n    <div class=\"order_price_block\">\n        <div class=\"count_product\" >\n            <div class=\"text_small_ord\">Количество:</div>\n            <div class=\"order_count_block\">\n                <span class=\"minus_prod\" onclick=\" minusCountOrder(this, 204) \">-</span>\n                <input type=\"text\" name=\"colprod\" id=\"count_product_item_204\" value=\"1 шт\" class=\"rasOb\" disabled=\"\" max=\"999999\">\n                <span class=\"plus_prod\" onclick=\" plusCountOrder(this, 204) \">+</span>\n            </div>\n        </div>\n        <div class=\"price_container\">\n            <div class=\"text_small_ord\">Сумма:</div>\n            <div class=\"price_tot\" id=\"total_price_product_item\">\n                <span class=\"price_ti\" id=\"price_ti_204\">1920</span> руб\n            </div>\n        </div>\n        <button class=\"delet_pr_bas\" onclick=\"deleteCardItem(this, 204)\">\n            <img src=\"/local/templates/sibdar_cust/img/close.png\" alt=\"\">\n        </button>\n    </div>\n</div>"
+				},
+				{
+					"name": "Просмотр корзины - удаление",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":711346,\"idProd\":204,\"type\":\"delete\"}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{list}}",
+							"host": [
+								"{{base_url}}{{list}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:46:11 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "88"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": "\n<h2>Корзина пуста, необходимо это исправить</h2>"
+				}
+			]
+		},
+		{
+			"name": "Добавление в корзину",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код состояния ответа - 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Время отклика находится в пределах допустимого диапазона\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ содержит ожидаемый заголовок Content-Type\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Текст ответа соответствует ожидаемой схеме и формату\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.a('string');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"content-length": true,
+					"host": true,
+					"connection": true,
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": " application/json, text/javascript, */*; q=0.01",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " ru,en;q=0.9",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": " application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+						"type": "text"
+					},
+					{
+						"key": "Priority",
+						"value": " u=1, i",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua",
+						"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": " XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\"idCookie\":\"711346\",\"idProd\":\"204\",\"type\":\"add\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}{{order}}",
+					"host": [
+						"{{base_url}}{{order}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Добавление в корзину",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"204\",\"type\":\"add\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{order}}",
+							"host": [
+								"{{base_url}}{{order}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:19:05 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "1"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": "1"
+				}
+			]
+		},
+		{
+			"name": "Добавление в корзину - negativ",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код состояния ответа - 400\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Время отклика находится в пределах допустимого диапазона\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ содержит ожидаемый заголовок Content-Type\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Текст ответа соответствует ожидаемой схеме и формату\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.a('string');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"content-length": true,
+					"host": true,
+					"connection": true,
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": " application/json, text/javascript, */*; q=0.01",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": " gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": " ru,en;q=0.9",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": " application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "DNT",
+						"value": " 1",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+						"type": "text"
+					},
+					{
+						"key": "Priority",
+						"value": " u=1, i",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua",
+						"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Mobile",
+						"value": " ?0",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Platform",
+						"value": " \"Windows\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": " empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": " cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": " same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": " XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCookie\": \"711346\",\r\n    \"idProd\": \"204\",\r\n    \"type\": \"add\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{order}}",
+					"host": [
+						"{{base_url}}{{order}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Добавление в корзину Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": " gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": " ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": " application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": " PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": " 1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": " [https://www.sibdar-spb.ru](https://www.sibdar-spb.ru)",
+								"type": "text"
+							},
+							{
+								"key": "Priority",
+								"value": " u=1, i",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": " [https://www.sibdar-spb.ru/](https://www.sibdar-spb.ru/)",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": " \"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": " ?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": " \"Windows\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": " empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": " cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": " same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": " Mozilla/5.0 (Windows NT [10.0](10.0); Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.[0.0.0](0.0.0) YaBrowser/25.[2.0.0](2.0.0) Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCookie\": \"711346\",\r\n    \"idProd\": \"204\",\r\n    \"type\": \"add\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}{{order}}",
+							"host": [
+								"{{base_url}}{{order}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:58:24 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "0"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Увеличение на единицу в корзине",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код состояния ответа - 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Время отклика составляет менее 200 мс\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Тип содержимого ответа - текст/html\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Текст ответа соответствует ожидаемой схеме\", function () {\r",
+							"    pm.expect(pm.response.text()).to.eql(\"0\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"content-length": true,
+					"host": true,
+					"connection": true,
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/javascript, */*; q=0.01",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "ru,en;q=0.9",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "DNT",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "https://www.sibdar-spb.ru",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua",
+						"value": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Mobile",
+						"value": "?0",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Platform",
+						"value": "\"Windows\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\"idCookie\":\"711346\",\"idProd\":\"204\",\"type\":\"plus\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}{{order}}",
+					"host": [
+						"{{base_url}}{{order}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Увеличение на единицу в корзине",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "DNT",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.sibdar-spb.ru",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": "?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": "\"Windows\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"204\",\"type\":\"plus\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/ajax/basketOrder.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ajax",
+								"basketOrder.php"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:25:14 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "1"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": "2"
+				}
+			]
+		},
+		{
+			"name": "Уменьшение на единицу в корзине Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код состояния ответа - 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"  });\r",
+							"\r",
+							"\r",
+							"pm.test(\"Время отклика находится в пределах допустимого диапазона\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ имеет ожидаемый тип содержимого 'text/html'\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Текст ответа соответствует ожидаемой схеме\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    // Add assertions for expected schema here\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"content-length": true,
+					"host": true,
+					"connection": true,
+					"accept": true,
+					"accept-encoding": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/javascript, */*; q=0.01",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br, zstd",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "ru,en;q=0.9",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+						"type": "text"
+					},
+					{
+						"key": "DNT",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "https://www.sibdar-spb.ru",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua",
+						"value": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Mobile",
+						"value": "?0",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Ch-Ua-Platform",
+						"value": "\"Windows\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\"idCookie\":\"711346\",\"idProd\":\"204\",\"type\":\"minus\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}{{order}}",
+					"host": [
+						"{{base_url}}{{order}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Уменьшение на единицу в корзине Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, text/javascript, */*; q=0.01",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br, zstd",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru,en;q=0.9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "PHPSESSID=X0ZiCw47OtO76YyUiBXEVtg0s07HQvRO; basketor=571436",
+								"type": "text"
+							},
+							{
+								"key": "DNT",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.sibdar-spb.ru",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua",
+								"value": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"YaBrowser\";v=\"25.2\", \"Yowser\";v=\"2.5\"",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Mobile",
+								"value": "?0",
+								"type": "text"
+							},
+							{
+								"key": "Sec-Ch-Ua-Platform",
+								"value": "\"Windows\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":\"711346\",\"idProd\":\"204\",\"type\":\"minus\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{order}}",
+							"host": [
+								"{{base_url}}{{order}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:29:54 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "1"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "set-cookie",
+							"value": "PHPSESSID=zVE5l9enNzTkOiTf63ELBc5Xmrk4QQtY; path=/; domain=sibdar-spb.ru; HttpOnly"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": "1"
+				}
+			]
+		},
+		{
+			"name": "Удаление из корзины",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Код состояния ответа - 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Время отклика составляет менее 200 мс\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ содержит требуемую схему и поля\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('field1');\r",
+							"    pm.expect(responseData).to.have.property('field2');\r",
+							"    pm.expect(responseData).to.have.property('field3');\r",
+							"    // Add more properties as needed\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/javascript, */*; q=0.01"
+					},
+					{
+						"key": "DNT",
+						"value": "1"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "www.sibdar-spb.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\"idCookie\":711346,\"idProd\":204,\"type\":\"delete\"}"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}{{order}}",
+					"host": [
+						"{{base_url}}{{order}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Удаление из корзины",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/javascript, */*; q=0.01"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "host",
+								"value": "www.sibdar-spb.ru"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "data",
+									"value": "{\"idCookie\":471277,\"idProd\":\"204\",\"type\":\"delete\"}"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}{{order}}",
+							"host": [
+								"{{base_url}}{{order}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "server",
+							"value": "nginx-reuseport/1.21.1"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 21 Feb 2025 06:35:24 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "content-length",
+							"value": "1"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "p3p",
+							"value": "policyref=\"/bitrix/p3p.xml\", CP=\"NON DSP COR CUR ADM DEV PSA PSD OUR UNR BUS UNI COM NAV INT DEM STA\""
+						},
+						{
+							"key": "x-powered-cms",
+							"value": "Bitrix Site Manager (b0a46561a397e26e9573d09a037117ba)"
+						},
+						{
+							"key": "expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						}
+					],
+					"cookie": [],
+					"body": "0"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://www.sibdar-spb.ru",
+			"type": "string"
+		},
+		{
+			"key": "order",
+			"value": "/ajax/basketOrder.php",
+			"type": "string"
+		},
+		{
+			"key": "list",
+			"value": "/ajax/basketList.php",
+			"type": "string"
+		},
+		{
+			"key": "Cookie",
+			"value": "PHPSESSID=RzBgNBnZLWUgDYt5sfCp3mj6t4LgR2Ns; BX_USER_ID=90cd9c43c36aef092a1f92ab502fcd9c; basketor=711346",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
